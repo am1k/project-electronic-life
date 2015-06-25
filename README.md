@@ -1,6 +1,28 @@
+
+
 1. For starting project you need to open index.html file, at this file you can see game with different animals and objects
 
 2. At this plan we use different symbols like this:
+
+                "##################################################",
+                "#                 ####         ****            ###",
+                "#   *  @  ##   ^        %     #######       OO  ##",
+                "#   O*   ##        O O                ****      *#",
+                "#       ##*                        #########  O *#",
+                "#      ##***  *         ****                   **#",
+                "#* ** O#  *  ***      #########         ^  O   **#",
+                "#* **  #      *         ^     #   *            **#",
+                "#     ##              #   O   #  **         ######",
+                "#*            @       #       #  *       O  #    #",
+                "#*    ^               #  ######               ** #",
+                "###          ****          ***                ** #",
+                "#       O                       @        O       #",
+                "#   *     ##  ##  ##  ##             ###      *  #",
+                "#   **         #           O *      #####  O O   #",
+                "##  **  O   O  #  #    *** ***       ###      ** #",
+                "###               #   ****                   ****#",
+                "###################################################"
+
 
  * "#": Wall - border map;
  * "@": Hunter - It functionality oriented at hunting on Plant eater;
