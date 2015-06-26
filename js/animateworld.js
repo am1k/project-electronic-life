@@ -1,6 +1,4 @@
-// test: no
-
-(function(module) {
+define(['areaAction/main'], function(world) {
   "use strict";
 
   var active = null;
@@ -14,7 +12,7 @@
     this.pre.appendChild(doc.createTextNode(world.toString()));
     this.button = node.appendChild(doc.createElement("div"));
     this.button.style.cssText = "position: absolute; bottom: 8px; right: -4.5em; color: white; font-family: tahoma, arial; " +
-      "background: #4ab; cursor: pointer; border-radius: 18px; font-size: 70%; width: 3.5em; text-align: center;";
+        "background: #4ab; cursor: pointer; border-radius: 18px; font-size: 70%; width: 3.5em; text-align: center;";
     this.button.innerHTML = "stop";
     var self = this;
     this.button.addEventListener("click", function() { self.clicked(); });
@@ -51,6 +49,6 @@
   };
 
   window.animateWorld = function(world) { new Animated(world); };
+  return new Animated(world);
 
-  module.animateWorld = animateWorld;
-}(eLife));
+});
