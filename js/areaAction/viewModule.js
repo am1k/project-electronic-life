@@ -1,6 +1,4 @@
-define(function(require) {
-
-    var vector = require('./vectorModule');
+var vectorM = require('./vectorModule');
 
     function View(world, vector) {
         this.world = world;
@@ -9,7 +7,7 @@ define(function(require) {
 
     View.prototype = {
         look: function(dir) {
-            var target = this.vector.plus(vector.directions[dir]);
+            var target = this.vector.plus(vectorM.directions[dir]);
             if (this.world.grid.isInside(target))
                 return charFromElement(this.world.grid.get(target));
             else
@@ -17,7 +15,7 @@ define(function(require) {
         },
         findAll: function(ch) {
             var found = [];
-            for (var dir in vector.directions)
+            for (var dir in vectorM.directions)
                 if (this.look(dir) == ch)
                     found.push(dir);
             return found;
@@ -48,12 +46,9 @@ define(function(require) {
             return element.originChar;
     }
 
-    return {
-        View: View,
-        randomElement: randomElement,
-        elementFromChar: elementFromChar,
-        charFromElement: charFromElement
-    };
-
-
-});
+module.exports = {
+    View: View,
+    randomElement: randomElement,
+    elementFromChar: elementFromChar,
+    charFromElement: charFromElement
+};

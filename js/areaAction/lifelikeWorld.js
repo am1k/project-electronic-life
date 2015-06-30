@@ -1,27 +1,5 @@
-define(function(require){
-
-    var module = require('./worldModule'),
-        view = require('./viewModule');
-
-    function LifelikeWorld(map, legend) {
-        module.World.call(this, map, legend);
-    }
-
-    LifelikeWorld.prototype = Object.create(module.World.prototype);
-
-    LifelikeWorld.prototype.letAct = function(critter, vector) {
-        var action = critter.act(new view.View(this, vector));
-        var handled = action &&
-            action.type in actionTypes &&
-            actionTypes[action.type].call(this, critter,
-                vector, action);
-        if (!handled) {
-            critter.energy -= 0.2;
-            if (critter.energy <= 0)
-                this.grid.set(vector, null);
-        }
-
-    };
+ var world = require('./worldModule'),
+     view = require('./viewModule');
 
     var actionTypes = Object.create(null);
 
@@ -69,10 +47,27 @@ define(function(require){
 
     };
 
-    return {
-        LifelikeWorld: LifelikeWorld
-    };
+     function LifelikeWorld(map, legend) {
+         world.World.call(this, map, legend);
+     }
 
+     LifelikeWorld.prototype = Object.create(world.World.prototype);
 
+     LifelikeWorld.prototype.letAct = function(critter, vector) {
+         var action = critter.act(new view.View(this, vector));
+         var handled = action &&
+             action.type in actionTypes &&
+             actionTypes[action.type].call(this, critter,
+                 vector, action);
+         if (!handled) {
+             critter.energy -= 0.2;
+             if (critter.energy <= 0)
+                 this.grid.set(vector, null);
+         }
 
-});
+     };
+
+ module.exports = {
+     LifelikeWorld: LifelikeWorld,
+     actionTypes: actionTypes
+ };

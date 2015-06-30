@@ -1,7 +1,5 @@
-define( function(require){
-
-    var vector = require('../areaAction/vectorModule'),
-        view = require('../areaAction/viewModule');
+var vector = require('../areaAction/vectorModule'),
+    view = require('../areaAction/viewModule');
 
     function Tiger() {
         this.energy = 60;
@@ -47,8 +45,4 @@ define( function(require){
         }
     };
 
-    return {
-        Tiger: Tiger
-    };
-
-});
+    module.exports =  Tiger;

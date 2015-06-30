@@ -1,11 +1,9 @@
-define(function(require) {
-
-    var gridM = require('./gridModule'),
-        vectorM = require('./vectorModule'),
-        view = require('./viewModule');
+ var Grid = require('./gridModule'),
+     vectorM = require('./vectorModule'),
+     view = require('./viewModule');
 
     function World(map, legend) {
-        var grid = new gridM.Grid(map[0].length, map.length);
+        var grid = new Grid(map[0].length, map.length);
         this.grid = grid;
         this.legend = legend;
 
@@ -58,9 +56,8 @@ define(function(require) {
 
     function Wall() {}
 
-    return {
-        Wall: Wall,
-        World: World
-    };
+module.exports = {
+    Wall: Wall,
+    World: World
+};
 
-});

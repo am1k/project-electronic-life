@@ -1,41 +1,37 @@
-define(function(require){
+    var lifelikeWorld = require('./lifelikeWorld'),
+        Tiger = require('../animals/Tiger'),
+        PlantEater = require('../animals/PlantEater'),
+        Plant = require('../animals/Plant'),
+        world = require('./worldModule');
 
-        var world = require('./worldModule'),
-            tiger = require('../animals/Tiger'),
-            plantEater = require('../animals/PlantEater'),
-            plant = require('../animals/Plant'),
-            likeworld = require('./lifelikeWorld');
+    var valley = new lifelikeWorld.LifelikeWorld(
+        ['####################################################',
+        '# @               ####         ****              ###',
+        '#   *  @  ##                 ########       OO    ##',
+        '#   *    ##        O O                 ****       *#',
+        '#       ##*                        ##########     *#',
+        '#      ##***  *         ****                     **#',
+        '#* **  #  *  ***      #########                  **#',
+        '#* **  #      *               #   *              **#',
+        '#     ##              #   O   #  ***          ######',
+        '#*            @       #       #   *        O  #    #',
+        '#*                    #  ######                 ** #',
+        '#####        ****          ***                  ** #',
+        '#***#   O                        @         O  @@   #',
+        '# O #     ##  ##  ##  ##               ###      *  #',
+        '#***#*         #              *       #####  O     #',
+        '##  #*  O   O  #  #    ***  ***        ###      ** #',
+        '###               #   *****                    ****#',
+        '####################################################'],
 
-        var plan =
-            ['####################################################',
-            '# @               ####         ****              ###',
-            '#   *  @  ##                 ########       OO    ##',
-            '#   *    ##        O O                 ****       *#',
-            '#       ##*                        ##########     *#',
-            '#      ##***  *         ****                     **#',
-            '#* **  #  *  ***      #########                  **#',
-            '#* **  #      *               #   *              **#',
-            '#     ##              #   O   #  ***          ######',
-            '#*            @       #       #   *        O  #    #',
-            '#*                    #  ######                 ** #',
-            '#####        ****          ***                  ** #',
-            '#***#   O                        @         O  @@   #',
-            '# O #     ##  ##  ##  ##               ###      *  #',
-            '#***#*         #              *       #####  O     #',
-            '##  #*  O   O  #  #    ***  ***        ###      ** #',
-            '###               #   *****                    ****#',
-            '####################################################'];
-
-        var description = {
-            '#': world.Wall,
-            '@': tiger.Tiger,
-            'O': plantEater.PlantEater,
-            '*': plant.Plant
-        };
-
-        var valley = new likeworld.LifelikeWorld(
-            plan, description);
-        return valley;
-
+    {
+        '#': world.Wall,
+        '@': Tiger,
+        'O': PlantEater,
+        '*': Plant
     }
-);
+    );
+
+    module.exports = valley.toString();
+
+    setInterval(function() { console.log(valley.toString()); }, 2000);

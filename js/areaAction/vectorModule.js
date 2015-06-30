@@ -1,6 +1,4 @@
-define([], function () {
-
-    function Vector(x, y) {
+function Vector(x, y) {
         this.x = x;
         this.y = y;
     }
@@ -29,10 +27,8 @@ define([], function () {
     var directionNames = 'n ne e se s sw w nw'.split(' ');
 
 
-    return {
-        Vector: Vector,
-        directions: directions,
-        directionNames: directionNames
-    };
-
-});
+module.exports =  {
+    Vector: Vector,
+    directions: directions,
+    directionNames: directionNames
+};

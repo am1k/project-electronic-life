@@ -1,18 +1,16 @@
-define(function(require) {
-
-        var vector = require('../areaAction/vectorModule'),
-            module = require('../areaAction/viewModule');
+ var vector = require('../areaAction/vectorModule'),
+     moduleV = require('../areaAction/viewModule');
 
         function PlantEater() {
             this.energy = 30;
-            this.direction = module.randomElement(Object.keys(vector.directions));
+            this.direction = moduleV.randomElement(Object.keys(vector.directions));
             this.eatCounter = 1;
         }
         PlantEater.prototype = {
             act: function(view) {
                 var space = view.find(' ');
                 if (this.energy > 60 && space) {
-                    return {type: 'reproduce', direction: module.randomElement(space)};
+                    return {type: 'reproduce', direction: moduleV.randomElement(space)};
                 }
 
                 var plant = view.findAll('*');
@@ -20,7 +18,7 @@ define(function(require) {
 
                     if (this.eatCounter >= 0) {
                         this.eatCounter = 0;
-                        return {type: "eat", direction: module.randomElement(plant)};
+                        return {type: "eat", direction: moduleV.randomElement(plant)};
                     } else {
                         this.eatCounter++;
                     }
@@ -40,8 +38,4 @@ define(function(require) {
             }
         };
 
-        return {
-            PlantEater: PlantEater
-        }
-    }
-);
+        module.exports = PlantEater;
