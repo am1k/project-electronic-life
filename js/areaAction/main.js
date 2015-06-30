@@ -1,6 +1,11 @@
-define(
-    ['./worldModule', '../animals/Tiger', '../animals/PlantEater', '../animals/Plant', './lifelikeWorld'],
-    function( world, tiger, plantEater, plant, likeworld ){
+define(function(require){
+
+        var world = require('./worldModule'),
+            tiger = require('../animals/Tiger'),
+            plantEater = require('../animals/PlantEater'),
+            plant = require('../animals/Plant'),
+            likeworld = require('./lifelikeWorld');
+
         var plan =
             ['####################################################',
             '# @               ####         ****              ###',

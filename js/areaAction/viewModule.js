@@ -1,4 +1,7 @@
-define(['./vectorModule'], function (vector) {
+define(function(require) {
+
+    var vector = require('./vectorModule');
+
     function View(world, vector) {
         this.world = world;
         this.vector = vector;

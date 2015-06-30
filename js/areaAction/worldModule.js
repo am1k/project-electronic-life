@@ -1,4 +1,9 @@
-define(['./gridModule', './vectorModule', './viewModule'], function(gridM, vectorM, view) {
+define(function(require) {
+
+    var gridM = require('./gridModule'),
+        vectorM = require('./vectorModule'),
+        view = require('./viewModule');
+
     function World(map, legend) {
         var grid = new gridM.Grid(map[0].length, map.length);
         this.grid = grid;

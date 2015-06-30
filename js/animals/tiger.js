@@ -1,4 +1,8 @@
-define(['../areaAction/vectorModule', '../areaAction/viewModule'], function(vector, view){
+define( function(require){
+
+    var vector = require('../areaAction/vectorModule'),
+        view = require('../areaAction/viewModule');
+
     function Tiger() {
         this.energy = 60;
         this.direction = view.randomElement(Object.keys(vector.directions));

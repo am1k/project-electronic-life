@@ -1,4 +1,7 @@
-define(['./vectorModule'], function (vector) {
+define(function(require) {
+
+    var vector = require('./vectorModule');
+
     function Grid(width, height) {
         this.space = new Array(width * height);
         this.width = width;

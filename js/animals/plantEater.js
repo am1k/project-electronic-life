@@ -1,5 +1,8 @@
-define(['../areaAction/vectorModule', '../areaAction/viewModule'],
-    function(vector, module){
+define(function(require) {
+
+        var vector = require('../areaAction/vectorModule'),
+            module = require('../areaAction/viewModule');
+
         function PlantEater() {
             this.energy = 30;
             this.direction = module.randomElement(Object.keys(vector.directions));
@@ -39,6 +42,6 @@ define(['../areaAction/vectorModule', '../areaAction/viewModule'],
 
         return {
             PlantEater: PlantEater
-        };
+        }
     }
 );

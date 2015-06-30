@@ -1,4 +1,8 @@
-define(['./worldModule', './viewModule'], function(module, view){
+define(function(require){
+
+    var module = require('./worldModule'),
+        view = require('./viewModule');
+
     function LifelikeWorld(map, legend) {
         module.World.call(this, map, legend);
     }
