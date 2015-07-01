@@ -1,13 +1,15 @@
 /**
- * Created by v.bogoroditskiy.
+ * @license eLife 1.0 Copyright (c) 2015, Vitaliy Bogoroditskiy All Rights Reserved.
+ * Available via the MIT or new BSD license.
+ * see: https://github.com/am1k/project-electronic-life for details
  */
 
-require.config({
-    baseUrl: "js"
-});
+var app = require('./areaAction/main');
 
-requirejs(['animateWorld', 'areaAction/main'],
-    function(){
-        animateWorld();
-    }
-);
+setInterval(function() {
+    app.turn();
+    console.log(app.toString());
+}, 333);
+
+
+

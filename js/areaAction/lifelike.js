@@ -1,79 +1,78 @@
 /**
- * Created by v.bogoroditskiy.
+ * @license eLife 1.0 Copyright (c) 2015, Vitaliy Bogoroditskiy All Rights Reserved.
+ * Available via the MIT or new BSD license.
+ * see: https://github.com/am1k/project-electronic-life for details
  */
 
-define(function(require){
 
-    var World = require('./world'),
-        elementFromChar = require('../elements/elementFromChar'),
-        View = require('./view');
+var World = require('./world'),
+    elementFromChar = require('../elements/elementFromChar'),
+    View = require('./view');
 
-    function LifelikeWorld(map, legend) {
-        World.call(this, map, legend);
+function LifelikeWorld(map, legend) {
+    World.call(this, map, legend);
+}
+
+LifelikeWorld.prototype = Object.create(World.prototype);
+
+LifelikeWorld.prototype.letAct = function(critter, vector) {
+    var action = critter.act(new View(this, vector));
+    var handled = action &&
+        action.type in actionTypes &&
+        actionTypes[action.type].call(this, critter,
+            vector, action);
+    if (!handled) {
+        critter.energy -= 0.2;
+        if (critter.energy <= 0)
+            this.grid.set(vector, null);
     }
 
-    LifelikeWorld.prototype = Object.create(World.prototype);
+};
 
-    LifelikeWorld.prototype.letAct = function(critter, vector) {
-        var action = critter.act(new View(this, vector));
-        var handled = action &&
-            action.type in actionTypes &&
-            actionTypes[action.type].call(this, critter,
-                vector, action);
-        if (!handled) {
-            critter.energy -= 0.2;
-            if (critter.energy <= 0)
-                this.grid.set(vector, null);
-        }
+var actionTypes = Object.create(null);
 
-    };
+actionTypes = {
 
-    var actionTypes = Object.create(null);
+    grow: function(critter) {
+        critter.energy += 0.5;
+        return true;
+    },
 
-    actionTypes = {
+    move: function(critter, vector, action) {
+        var dest = this.checkDestination(action, vector);
+        if (dest == null ||
+            critter.energy <= 1 ||
+            this.grid.get(dest) != null)
+            return false;
+        critter.energy -= 1;
+        this.grid.set(vector, null);
+        this.grid.set(dest, critter);
+        return true;
+    },
 
-        grow: function(critter) {
-            critter.energy += 0.5;
-            return true;
-        },
+    eat: function(critter, vector, action) {
+        var dest = this.checkDestination(action, vector);
+        var atDest = dest != null && this.grid.get(dest);
+        if (!atDest || atDest.energy == null)
+            return false;
+        critter.energy += atDest.energy;
+        this.grid.set(dest, null);
+        return true;
+    },
 
-        move: function(critter, vector, action) {
-            var dest = this.checkDestination(action, vector);
-            if (dest == null ||
-                critter.energy <= 1 ||
-                this.grid.get(dest) != null)
-                return false;
-            critter.energy -= 1;
-            this.grid.set(vector, null);
-            this.grid.set(dest, critter);
-            return true;
-        },
+    reproduce: function(critter, vector, action) {
+        var baby = elementFromChar(this.legend,
+            critter.originChar);
+        var dest = this.checkDestination(action, vector);
+        if (dest == null ||
+            critter.energy <= 2 * baby.energy ||
+            this.grid.get(dest) != null)
+            return false;
+        critter.energy -= 2 * baby.energy;
+        this.grid.set(dest, baby);
+        return true;
+    }
 
-        eat: function(critter, vector, action) {
-            var dest = this.checkDestination(action, vector);
-            var atDest = dest != null && this.grid.get(dest);
-            if (!atDest || atDest.energy == null)
-                return false;
-            critter.energy += atDest.energy;
-            this.grid.set(dest, null);
-            return true;
-        },
+};
 
-        reproduce: function(critter, vector, action) {
-            var baby = elementFromChar(this.legend,
-                critter.originChar);
-            var dest = this.checkDestination(action, vector);
-            if (dest == null ||
-                critter.energy <= 2 * baby.energy ||
-                this.grid.get(dest) != null)
-                return false;
-            critter.energy -= 2 * baby.energy;
-            this.grid.set(dest, baby);
-            return true;
-        }
-
-    };
-
-    return LifelikeWorld;
-
-});
+module.exports = LifelikeWorld;
