@@ -1,6 +1,10 @@
+/**
+ * Created by v.bogoroditskiy.
+ */
+
 define(function(require) {
 
-    var vector = require('./vectorModule');
+    var Vector = require('./vector');
 
     function Grid(width, height) {
         this.space = new Array(width * height);
@@ -18,7 +22,7 @@ define(function(require) {
                 for (var x = 0; x < this.width; x++) {
                     var value = this.space[x + y * this.width];
                     if (value != null)
-                        f.call(context, value, new vector.Vector(x, y));
+                        f.call(context, value, new Vector(x, y));
                 }
             }
         },
@@ -29,8 +33,6 @@ define(function(require) {
             this.space[vector.x + this.width * vector.y] = value;
         }
     };
-    return {
-        Grid: Grid
-    };
+    return Grid;
 
 });

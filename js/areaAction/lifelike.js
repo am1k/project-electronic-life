@@ -1,16 +1,21 @@
+/**
+ * Created by v.bogoroditskiy.
+ */
+
 define(function(require){
 
-    var module = require('./worldModule'),
-        view = require('./viewModule');
+    var World = require('./world'),
+        elementFromChar = require('../elements/elementFromChar'),
+        View = require('./view');
 
     function LifelikeWorld(map, legend) {
-        module.World.call(this, map, legend);
+        World.call(this, map, legend);
     }
 
-    LifelikeWorld.prototype = Object.create(module.World.prototype);
+    LifelikeWorld.prototype = Object.create(World.prototype);
 
     LifelikeWorld.prototype.letAct = function(critter, vector) {
-        var action = critter.act(new view.View(this, vector));
+        var action = critter.act(new View(this, vector));
         var handled = action &&
             action.type in actionTypes &&
             actionTypes[action.type].call(this, critter,
@@ -55,7 +60,7 @@ define(function(require){
         },
 
         reproduce: function(critter, vector, action) {
-            var baby = view.elementFromChar(this.legend,
+            var baby = elementFromChar(this.legend,
                 critter.originChar);
             var dest = this.checkDestination(action, vector);
             if (dest == null ||
@@ -69,10 +74,6 @@ define(function(require){
 
     };
 
-    return {
-        LifelikeWorld: LifelikeWorld
-    };
-
-
+    return LifelikeWorld;
 
 });

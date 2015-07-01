@@ -1,4 +1,8 @@
-define([], function(){
+/**
+ * Created by v.bogoroditskiy.
+ */
+
+define(function(){
 
         function Plant() {
             this.energy = 3 + Math.random() * 4;
@@ -15,8 +19,6 @@ define([], function(){
                     return {type: 'grow'};
             }
         };
-        return {
-            Plant: Plant
-        };
+        return Plant;
     }
 );

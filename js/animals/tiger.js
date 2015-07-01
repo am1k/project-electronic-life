@@ -1,11 +1,15 @@
-define( function(require){
+/**
+ * Created by v.bogoroditskiy.
+ */
 
-    var vector = require('../areaAction/vectorModule'),
-        view = require('../areaAction/viewModule');
+define(function(require){
+
+    var directions = require('../areaAction/directions'),
+        randomElement = require('../elements/randomElement');
 
     function Tiger() {
         this.energy = 60;
-        this.direction = view.randomElement(Object.keys(vector.directions));
+        this.direction = randomElement(Object.keys(directions));
         this.eatCounter = 1;
     }
     Tiger.prototype = {
@@ -25,7 +29,7 @@ define( function(require){
             }
 
             if (this.energy > 120 && space) {
-                return {type: 'reproduce', direction: view.randomElement(space)};
+                return {type: 'reproduce', direction: randomElement(space)};
             }
 
             if (space) {
@@ -47,8 +51,6 @@ define( function(require){
         }
     };
 
-    return {
-        Tiger: Tiger
-    };
+    return Tiger;
 
 });

@@ -1,16 +1,13 @@
+/**
+ * Created by v.bogoroditskiy.
+ */
+
 require.config({
     baseUrl: "js"
 });
 
-//require([
-//        "animateworld"
-//    ],
-//    function(Animateworld) {
-//
-//    });
-
 requirejs(['animateWorld', 'areaAction/main'],
-    function(animate, valley){
+    function(){
         animateWorld();
     }
 );

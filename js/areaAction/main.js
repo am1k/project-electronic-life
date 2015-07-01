@@ -1,10 +1,15 @@
+/**
+ * Created by v.bogoroditskiy.
+ */
+
 define(function(require){
 
-        var world = require('./worldModule'),
-            tiger = require('../animals/Tiger'),
-            plantEater = require('../animals/PlantEater'),
-            plant = require('../animals/Plant'),
-            likeworld = require('./lifelikeWorld');
+        var world = require('./world'),
+            Tiger = require('../animals/Tiger'),
+            PlantEater = require('../animals/PlantEater'),
+            Plant = require('../animals/Plant'),
+            Wall = require('./wall'),
+            LifelikeWorld = require('./lifelike');
 
         var plan =
             ['####################################################',
@@ -27,13 +32,13 @@ define(function(require){
             '####################################################'];
 
         var description = {
-            '#': world.Wall,
-            '@': tiger.Tiger,
-            'O': plantEater.PlantEater,
-            '*': plant.Plant
+            '#': Wall,
+            '@': Tiger,
+            'O': PlantEater,
+            '*': Plant
         };
 
-        var valley = new likeworld.LifelikeWorld(
+        var valley = new LifelikeWorld(
             plan, description);
         return valley;
 
