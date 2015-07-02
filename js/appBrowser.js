@@ -73,7 +73,8 @@ PlantEater.prototype = {
 };
 
 module.exports = PlantEater;
-},{"../areaAction/directions":5,"../elements/randomElement":15}],3:[function(require,module,exports){
+
+},{"../areaAction/directions":11,"../elements/randomElement":15}],3:[function(require,module,exports){
 /**
  * @license eLife 1.0 Copyright (c) 2015, Vitaliy Bogoroditskiy All Rights Reserved.
  * Available via the MIT or new BSD license.
@@ -129,7 +130,8 @@ Tiger.prototype = {
 };
 
 module.exports = Tiger;
-},{"../areaAction/directions":5,"../elements/randomElement":15}],4:[function(require,module,exports){
+
+},{"../areaAction/directions":11,"../elements/randomElement":15}],4:[function(require,module,exports){
 /**
  * @license eLife 1.0 Copyright (c) 2015, Vitaliy Bogoroditskiy All Rights Reserved.
  * Available via the MIT or new BSD license.
@@ -188,35 +190,14 @@ module.exports = Tiger;
   window.animateWorld = function() { new Animated(world); };
 
 
-},{"./areaAction/main":8}],5:[function(require,module,exports){
+},{"./areaAction/main":12}],5:[function(require,module,exports){
 /**
  * @license eLife 1.0 Copyright (c) 2015, Vitaliy Bogoroditskiy All Rights Reserved.
  * Available via the MIT or new BSD license.
  * see: https://github.com/am1k/project-electronic-life for details
  */
 
-var Vector = require('./vector');
-
-var directions = {
-    'n':  new Vector( 0, -1),
-    'ne': new Vector( 1, -1),
-    'e':  new Vector( 1,  0),
-    'se': new Vector( 1,  1),
-    's':  new Vector( 0,  1),
-    'sw': new Vector(-1,  1),
-    'w':  new Vector(-1,  0),
-    'nw': new Vector(-1, -1)
-};
-
-module.exports = directions;
-},{"./vector":9}],6:[function(require,module,exports){
-/**
- * @license eLife 1.0 Copyright (c) 2015, Vitaliy Bogoroditskiy All Rights Reserved.
- * Available via the MIT or new BSD license.
- * see: https://github.com/am1k/project-electronic-life for details
- */
-
-var Vector = require('./vector');
+var Vector = require('./Vector');
 
 function Grid(width, height) {
     this.space = new Array(width * height);
@@ -247,7 +228,8 @@ Grid.prototype = {
 };
 
 module.exports = Grid;
-},{"./vector":9}],7:[function(require,module,exports){
+
+},{"./Vector":7}],6:[function(require,module,exports){
 /**
  * @license eLife 1.0 Copyright (c) 2015, Vitaliy Bogoroditskiy All Rights Reserved.
  * Available via the MIT or new BSD license.
@@ -255,9 +237,9 @@ module.exports = Grid;
  */
 
 
-var World = require('./world'),
+var World = require('./World'),
     elementFromChar = require('../elements/elementFromChar'),
-    View = require('./view');
+    View = require('./View');
 
 function LifelikeWorld(map, legend) {
     World.call(this, map, legend);
@@ -326,54 +308,8 @@ actionTypes = {
 };
 
 module.exports = LifelikeWorld;
-},{"../elements/elementFromChar":14,"./view":10,"./world":12}],8:[function(require,module,exports){
-/**
- * @license eLife 1.0 Copyright (c) 2015, Vitaliy Bogoroditskiy All Rights Reserved.
- * Available via the MIT or new BSD license.
- * see: https://github.com/am1k/project-electronic-life for details
- */
 
-        var Tiger = require('../animals/Tiger'),
-            PlantEater = require('../animals/PlantEater'),
-            Plant = require('../animals/Plant'),
-            Wall = require('./wall'),
-            LifelikeWorld = require('./lifelike');
-
-        var valley = new LifelikeWorld(
-            ['####################################################',
-                '# @               ####         ****              ###',
-                '#   *  @  ##                 ########       OO    ##',
-                '#   *    ##        O O                 ****       *#',
-                '#       ##*                        ##########     *#',
-                '#      ##***  *         ****                     **#',
-                '#* **  #  *  ***      #########                  **#',
-                '#* **  #      *               #   *              **#',
-                '#     ##              #   O   #  ***          ######',
-                '#*            @       #       #   *        O  #    #',
-                '#*                    #  ######                 ** #',
-                '#####        ****          ***                  ** #',
-                '#***#   O                        @         O  @@   #',
-                '# O #     ##  ##  ##  ##               ###      *  #',
-                '#***#*         #              *       #####  O     #',
-                '##  #*  O   O  #  #    ***  ***        ###      ** #',
-                '###               #   *****                    ****#',
-                '####################################################'],
-
-            {
-                '#': Wall,
-                '@': Tiger,
-                'O': PlantEater,
-                '*': Plant
-            }
-        );
-
-
-        module.exports = valley;
-
-
-
-
-},{"../animals/Plant":1,"../animals/PlantEater":2,"../animals/Tiger":3,"./lifelike":7,"./wall":11}],9:[function(require,module,exports){
+},{"../elements/elementFromChar":14,"./View":8,"./World":10}],7:[function(require,module,exports){
 /**
  * @license eLife 1.0 Copyright (c) 2015, Vitaliy Bogoroditskiy All Rights Reserved.
  * Available via the MIT or new BSD license.
@@ -394,7 +330,8 @@ Vector.prototype = {
 };
 
 module.exports = Vector;
-},{}],10:[function(require,module,exports){
+
+},{}],8:[function(require,module,exports){
 /**
  * @license eLife 1.0 Copyright (c) 2015, Vitaliy Bogoroditskiy All Rights Reserved.
  * Available via the MIT or new BSD license.
@@ -433,7 +370,8 @@ View.prototype = {
 };
 
 module.exports = View;
-},{"../elements/charFromElement":13,"../elements/randomElement":15,"./directions":5}],11:[function(require,module,exports){
+
+},{"../elements/charFromElement":13,"../elements/randomElement":15,"./directions":11}],9:[function(require,module,exports){
 /**
  * @license eLife 1.0 Copyright (c) 2015, Vitaliy Bogoroditskiy All Rights Reserved.
  * Available via the MIT or new BSD license.
@@ -443,17 +381,18 @@ module.exports = View;
 function Wall() {}
 
 module.exports = Wall;
-},{}],12:[function(require,module,exports){
+
+},{}],10:[function(require,module,exports){
 /**
  * @license eLife 1.0 Copyright (c) 2015, Vitaliy Bogoroditskiy All Rights Reserved.
  * Available via the MIT or new BSD license.
  * see: https://github.com/am1k/project-electronic-life for details
  */
 
-var Grid = require('./grid'),
-    Vector = require('./vector'),
+var Grid = require('./Grid'),
+    Vector = require('./Vector'),
     directions = require('./directions'),
-    View = require('./view'),
+    View = require('./View'),
     charFromElement = require('../elements/charFromElement'),
     elementFromChar = require('../elements/elementFromChar');
 
@@ -511,7 +450,76 @@ World.prototype = {
 };
 
 module.exports = World;
-},{"../elements/charFromElement":13,"../elements/elementFromChar":14,"./directions":5,"./grid":6,"./vector":9,"./view":10}],13:[function(require,module,exports){
+
+},{"../elements/charFromElement":13,"../elements/elementFromChar":14,"./Grid":5,"./Vector":7,"./View":8,"./directions":11}],11:[function(require,module,exports){
+/**
+ * @license eLife 1.0 Copyright (c) 2015, Vitaliy Bogoroditskiy All Rights Reserved.
+ * Available via the MIT or new BSD license.
+ * see: https://github.com/am1k/project-electronic-life for details
+ */
+
+var Vector = require('./Vector');
+
+var directions = {
+    'n':  new Vector( 0, -1),
+    'ne': new Vector( 1, -1),
+    'e':  new Vector( 1,  0),
+    'se': new Vector( 1,  1),
+    's':  new Vector( 0,  1),
+    'sw': new Vector(-1,  1),
+    'w':  new Vector(-1,  0),
+    'nw': new Vector(-1, -1)
+};
+
+module.exports = directions;
+},{"./Vector":7}],12:[function(require,module,exports){
+/**
+ * @license eLife 1.0 Copyright (c) 2015, Vitaliy Bogoroditskiy All Rights Reserved.
+ * Available via the MIT or new BSD license.
+ * see: https://github.com/am1k/project-electronic-life for details
+ */
+
+        var Tiger = require('../animals/Tiger'),
+            PlantEater = require('../animals/PlantEater'),
+            Plant = require('../animals/Plant'),
+            Wall = require('./Wall'),
+            LifelikeWorld = require('./Lifelike');
+
+        var valley = new LifelikeWorld(
+            ['####################################################',
+                '# @               ####         ****              ###',
+                '#   *  @  ##                 ########       OO    ##',
+                '#   *    ##        O O                 ****       *#',
+                '#       ##*                        ##########     *#',
+                '#      ##***  *         ****                     **#',
+                '#* **  #  *  ***      #########                  **#',
+                '#* **  #      *               #   *              **#',
+                '#     ##              #   O   #  ***          ######',
+                '#*            @       #       #   *        O  #    #',
+                '#*                    #  ######                 ** #',
+                '#####        ****          ***                  ** #',
+                '#***#   O                        @         O  @@   #',
+                '# O #     ##  ##  ##  ##               ###      *  #',
+                '#***#*         #              *       #####  O     #',
+                '##  #*  O   O  #  #    ***  ***        ###      ** #',
+                '###               #   *****                    ****#',
+                '####################################################'],
+
+            {
+                '#': Wall,
+                '@': Tiger,
+                'O': PlantEater,
+                '*': Plant
+            }
+        );
+
+
+        module.exports = valley;
+
+
+
+
+},{"../animals/Plant":1,"../animals/PlantEater":2,"../animals/Tiger":3,"./Lifelike":6,"./Wall":9}],13:[function(require,module,exports){
 /**
  * @license eLife 1.0 Copyright (c) 2015, Vitaliy Bogoroditskiy All Rights Reserved.
  * Available via the MIT or new BSD license.

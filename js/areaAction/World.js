@@ -4,10 +4,10 @@
  * see: https://github.com/am1k/project-electronic-life for details
  */
 
-var Grid = require('./grid'),
-    Vector = require('./vector'),
+var Grid = require('./Grid'),
+    Vector = require('./Vector'),
     directions = require('./directions'),
-    View = require('./view'),
+    View = require('./View'),
     charFromElement = require('../elements/charFromElement'),
     elementFromChar = require('../elements/elementFromChar');
 

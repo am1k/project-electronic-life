@@ -4,7 +4,7 @@
  * see: https://github.com/am1k/project-electronic-life for details
  */
 
-var Vector = require('./vector');
+var Vector = require('./Vector');
 
 var directions = {
     'n':  new Vector( 0, -1),

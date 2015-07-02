@@ -7,8 +7,8 @@
         var Tiger = require('../animals/Tiger'),
             PlantEater = require('../animals/PlantEater'),
             Plant = require('../animals/Plant'),
-            Wall = require('./wall'),
-            LifelikeWorld = require('./lifelike');
+            Wall = require('./Wall'),
+            LifelikeWorld = require('./Lifelike');
 
         var valley = new LifelikeWorld(
             ['####################################################',
