@@ -6,12 +6,12 @@
 
 define(function(require){
 
-        var world = require('./world'),
+        var world = require('./World'),
             Tiger = require('../animals/Tiger'),
             PlantEater = require('../animals/PlantEater'),
             Plant = require('../animals/Plant'),
-            Wall = require('./wall'),
-            LifelikeWorld = require('./lifelike');
+            Wall = require('./Wall'),
+            LifelikeWorld = require('./Lifelike');
 
         var plan =
             ['####################################################',

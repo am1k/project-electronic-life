@@ -6,7 +6,7 @@
 
 define(function(require) {
 
-    var Vector = require('./vector');
+    var Vector = require('./Vector');
 
     var directions = {
         'n':  new Vector( 0, -1),
