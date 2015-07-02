@@ -6,7 +6,7 @@
 
 define(function(require) {
 
-    var Vector = require('./vector');
+    var Vector = require('./Vector');
 
     function Grid(width, height) {
         this.space = new Array(width * height);
@@ -38,3 +38,4 @@ define(function(require) {
     return Grid;
 
 });
+

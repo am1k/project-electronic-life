@@ -6,9 +6,9 @@
 
 define(function(require){
 
-    var World = require('./world'),
+    var World = require('./World'),
         elementFromChar = require('../elements/elementFromChar'),
-        View = require('./view');
+        View = require('./View');
 
     function LifelikeWorld(map, legend) {
         World.call(this, map, legend);
@@ -79,3 +79,4 @@ define(function(require){
     return LifelikeWorld;
 
 });
+
